@@ -21,3 +21,23 @@ There will be separate components of the webApp including
 - profile information
 - profile image
 
+This webapp will use a graphQl Mongo database which will contain: 
+- performer information
+- event information 
+- Enquiry information 
+- 
+
+What i expect the project to do?
+
+Database structure?
+
+List of Objects
+- Artist (name, gender, location, contact details, gigs-Object)
+- Gig(location, instrument, )
+
+Express API connected to the database
+
+Authorisation
+
+Planning to approach this project with a database first approach, creating the logic of the application first before implementing a ui to suite the necessary information. 
+
