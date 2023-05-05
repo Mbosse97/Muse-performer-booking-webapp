@@ -1,0 +1,22 @@
+[
+    {
+        "firstName": "Rahat",
+        "lastName": "Saini",
+        "performerName": "The Professor",
+        "instrument": "Saxophone",
+        "phone": "0411223344",
+        "email": "test@gmail.com",
+        "about": "Professor turned Saxophone player",
+        "password": "test1234"
+    },
+    {
+        "firstName": "Rahat",
+        "lastName": "Saini",
+        "performerName": "The Professor",
+        "instrument": "Saxophone",
+        "phone": "0411223344",
+        "email": "test1@gmail.com",
+        "about": "Professor turned Saxophone player",
+        "password": "test12345"
+    }
+]
