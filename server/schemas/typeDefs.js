@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 scalar JSON  
@@ -10,10 +10,8 @@ type User {
     performerName: String!
     password: String!
     instrument: String!
-    phone: Int!
     email: String!
     about: String!
-    enquiries: [Enquiry]
     events: [Event]
 }
 
@@ -25,12 +23,13 @@ type Event {
     website: String
     description: String!
     dateCreated: String!
-    date: String!
+    date: String
 }
 
 type Enquiry {
     _id: ID!
     enquiryText: String!
+    performername: [User!]
 }
 
 type Auth {
@@ -44,7 +43,6 @@ input RegisterUser{
     performerName: String!
     password: String!
     instrument: String!
-    phone: Int!
     email: String!
     about: String!
 }
@@ -55,7 +53,6 @@ input UpdateUserInput{
     performerName: String!
     password: String!
     instrument: String!
-    phone: Int!
     email: String!
     about: String!
 }
@@ -64,14 +61,14 @@ input EventInput{
     location: String!
     wesbite: String
     description: String!
-    dateCreated: String!
-    date: String!
+    date: String
 }
 
 type Query {
     users: [User]
     events: [Event]
-    getEvent(eventId: ID!): Event
+    getEvent(eventId: ID!): Event 
+    getUser(userId: ID!): [User]
 
 }
 
@@ -81,13 +78,12 @@ type Mutation {
         performerName: String!,
         password: String!,
         instrument: String!,
-        phone: Int!,
         email: String!,
         about: String!): Auth
     login(email: String!, password: String!): Auth
     updateUser(input: UpdateUserInput): User
-    addEvent(input: EventInput!): Event!
-    deleteEvent(EventId: ID!): String!
+    createEvent(input: EventInput!): Event!
+    deleteEvent(eventId: ID!): String!
 }
 `
 
