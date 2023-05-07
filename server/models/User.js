@@ -21,17 +21,17 @@ const userSchema = new Schema({
         required: true,
         trim: true,
     },
-    phone: {
-        type: Number,
-        trim: true, 
-    },
+    // phone: {
+    //     type: Number,
+    //     trim: true, 
+    // },
     email: {
         type: String,
         trim: true,
         lowercase: true,
         unique: true,
         required: 'Email address is required',
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid and unique email address']
     },
     about: {
         type: String, 
