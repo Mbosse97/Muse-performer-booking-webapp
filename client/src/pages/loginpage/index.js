@@ -58,7 +58,7 @@ function LoginPage(props) {
                 value={values.password}
                 onChange={onChange} 
             />
-            <Button type='submit'>
+            <Button type='submit' primary>
                 Login
             </Button >
         </Form> 

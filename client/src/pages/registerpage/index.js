@@ -101,7 +101,7 @@ function RegisterPage(props) {
                 value={values.about}
                 onChange={onChange} 
             />
-            <Button type='submit'>
+            <Button type='submit' primary as ={Link} to ='/'>
                 Register
             </Button >
         </Form> 

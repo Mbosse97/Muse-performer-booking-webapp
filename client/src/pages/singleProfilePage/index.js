@@ -5,8 +5,10 @@ import { GET_USERS } from "utils/queries";
 import {Grid, Image} from "semantic-ui-react";
 import ProfileCard from '../../components/Profiles'
 
-function ProfilePage() {
+function SingleProfilePage({post: {_id, firstName, lastname, instrument, email, about}}) {
     const {loading, data} = useQuery(GET_USERS);
+    const [open, setOpen] = React.useState(false);
+
     const userProfiles = data?.users || [];
   
     console.log(userProfiles);
@@ -32,4 +34,4 @@ function ProfilePage() {
     );
 }
 
-export default ProfilePage
+export default SingleProfilePage;
