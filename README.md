@@ -29,6 +29,7 @@ To dowloand the and run this webapp, take the follwing steps
 - Run npm i within the terminal to download all relevant packages
 - if // require('dotenv').config(); line on /server/serv.js is commented out, uncomment it before proceeding 
 - Run npm start to start both node server and client server
+- if deployment link is not rendering any cards on event and profile pages, npm run develop on local system first and then access link
 
 ---
 ## Usage
