@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
+    "apollo-link-context": "^1.0.20",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
     "graphql": "^16.6.0",

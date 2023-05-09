@@ -1,11 +1,29 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
+import { CREATE_EVENT } from "utils/mutations";
+import { useMutation } from "@apollo/client";
 
-import {useForm} from 
 
 function EventForm(){
-    const {values, onChange, onSubmit} = useForm(createPostCallback, {
-        
+    // const {values, onChange, onSubmit} = useForm(createPostCallback, {
+
+    // })
+
+    const [values, setValues] = useState({
+        location: "",
+        website: "",
+        description: "",
+        dateCreated: "",
+        date: ""
+    });
+
+    const [createEvent, {error} ] = useMutation(CREATE_EVENT, {
+        variables: values,
+        update(_,result){
+            console.log(result)
+            values.location = ''
+
+        }
     })
 
     return (

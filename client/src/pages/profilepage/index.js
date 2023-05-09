@@ -25,7 +25,7 @@ function ProfilePage() {
             <ProfileCard post = {user}/>
           </Grid.Column>
         ))
-        )};
+        )}
       </Grid.Row>
       </Grid>
       </div>

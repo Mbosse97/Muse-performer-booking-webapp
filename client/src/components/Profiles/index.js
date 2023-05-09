@@ -8,7 +8,7 @@ function ProfileCard({post: {_id, firstName, lastname, instrument, email, about}
 
   return (
             <Card fluid>
-                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} style={{ cursor: 'pointer' }} />
               <Card.Content>
                 <Card.Header>{firstName}</Card.Header>
                 <Card.Meta>

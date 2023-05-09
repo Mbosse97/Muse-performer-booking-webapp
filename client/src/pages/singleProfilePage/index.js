@@ -1,37 +1,86 @@
-import React from "react";
+import React, {useContext} from "react";
 import {useQuery} from '@apollo/client';
 import gql from 'graphql';
-import { GET_USERS } from "utils/queries";
-import {Grid, Image} from "semantic-ui-react";
-import ProfileCard from '../../components/Profiles'
+import { GET_ME } from "utils/queries";
+import {Grid, Image, Segment} from "semantic-ui-react";
+import MyProfileCard from '../../components/MyProfileCard'
+import { padding } from "@mui/system";
+import { AuthContext } from "utils/auth";
 
-function SingleProfilePage({post: {_id, firstName, lastname, instrument, email, about}}) {
-    const {loading, data} = useQuery(GET_USERS);
+function SingleProfilePage() {
+
+    const {user, logout} =  useContext(AuthContext);
+
+    console.log(user);
+
+    const {loading, data} = useQuery(GET_ME);
+    console.log(data)
     const [open, setOpen] = React.useState(false);
 
-    const userProfiles = data?.users || [];
+    const userProfile = data?.me || [];
   
-    console.log(userProfiles);
+    console.log(userProfile.events);
   
     return (
       <div>
-      <Grid columns={4}>
-      <Grid.Row className="page-title">
-        <h1>View Our Profiles</h1>
-      </Grid.Row>
-      <Grid.Row>
-        {loading ? (
-          <h1>Loading Posts...</h1>
-        ) : (userProfiles && userProfiles.map(user => (
-          <Grid.Column key = {user.id} style ={{marginBottom: 20}}>
-            <ProfileCard post = {user}/>
+        <Grid>
+          <Grid.Column width={16}>
+          <Grid.Row className="page-title">
+              <h1>My Profile</h1>
+            </Grid.Row>
           </Grid.Column>
-        ))
-        )};
-      </Grid.Row>
-      </Grid>
+
+          <Grid.Column width={4}>
+
+            <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+
+          </Grid.Column>
+
+
+
+          <Grid.Column width={8}>
+            <Segment> 
+              <h2>Details</h2>
+              <Segment vertical>
+                  Name: {userProfile.firstName} {userProfile.lastName}
+              </Segment>
+              <Segment vertical>
+                  Main Instrument: {userProfile.instrument}
+              </Segment>
+              <Segment vertical>
+                  About Me: {userProfile.about}
+              </Segment>
+            </Segment>
+
+            
+          </Grid.Column>
+
+          <Grid.Column width={4}>
+            <Segment>
+              <h4>Contact Information</h4>
+              <Segment vertical>
+                  Email: {userProfile.email}
+              </Segment>
+              <Segment vertical>
+                  Phone: 
+              </Segment>
+              <Segment vertical>
+
+              </Segment>
+            </Segment>
+          </Grid.Column>
+          <Grid.Row style={{paddingTop:'5em', paddingBottom:'5em'}}>
+            <h1>My Upcoming Events</h1>
+          </Grid.Row>
+          <Grid.Row>
+              {userProfile && userProfile.events.map(event => (
+                <MyProfileCard post = {event}/> 
+              ))}
+          </Grid.Row>
+
+        </Grid>
       </div>
-    );
+    )
 }
 
 export default SingleProfilePage;

@@ -1,15 +1,24 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Event } = require('../models');
-const { signToken, checkAuth } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 // const bcrypt = require('bcrypt');
 const { GraphQLJSON } = require('graphql-type-json');
+const moment = require('moment');
 
 const resolvers = {
     JSON: GraphQLJSON,
 
     Query: {
+        me: async (parent, args, context) => {
+            if(context.user) {
+                return await User.findOne({}).populate('events')
+            }
+        },
         users: async () => {
-            return await User.find({}).populate('events');
+            return await User.find({}).populate({
+                path: 'events',
+                sort: {dateCreated: 1}
+            });
         },
         events: async () => {
             return await Event.find({});
@@ -73,51 +82,74 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
-        createEvent: async (parent, {input}, context) => {
-            const user = checkAuth(context);
-            console.log(user);
-            console.log(user.email);
+        createEvent: async (parent, {location, website, description, date},context) => {
+            const formattedDate = moment(date).format('Do [of] MMMM YYYY');
 
-            // if(context.user) {
-                const event = await Event.create(input);
+            if (context.user) {
+                console.log(context.user)
+                const event = await Event.create({
+                  location,
+                  website, 
+                  description, 
+                  date: formattedDate,
+                  performer: String(context.user.performerName),
+                  instrument: String(context.user.instrument),
+                });
         
                 await User.findOneAndUpdate(
-                  { _id: { $in: input.users} }, 
-                  { $addToSet: { events: event._id } },
-                  { new: true },
+                  { _id: context.user._id },
+                  { $addToSet: { events: event._id } }
                 );
-            
-                return {event};
-            //   }
-            //   throw new AuthenticationError('Not logged in');
+        
+                return event;
+              }
+              throw new AuthenticationError('You need to be logged in!');
         },
         // createEvent: async (parent, {input}, context) => {
         //     const user = checkAuth(context);
         //     console.log(user);
+        //     console.log(user.email);
 
-        //     const newEvent = new Event({
-        //         input,
-        //         performer: user._id,
-        //         instrument: user.instrument,
-        //         dateCreated: new Date().toISOString()
-        //     });
+        //     // if(context.user) {
+        //         const event = await Event.create(input);
+        
+        //         await User.findOneAndUpdate(
+        //           { _id: { $in: input.users} }, 
+        //           { $addToSet: { events: event._id } },
+        //           { new: true },
+        //         );
+            
+        //         return {event};
+        //     //   }
+        //     //   throw new AuthenticationError('Not logged in');
+        // },
+        // // createEvent: async (parent, {input}, context) => {
+        // //     const user = checkAuth(context);
+        // //     console.log(user);
 
-        //     const event = await newEvent.save();
+        // //     const newEvent = new Event({
+        // //         input,
+        // //         performer: user._id,
+        // //         instrument: user.instrument,
+        // //         dateCreated: new Date().toISOString()
+        // //     });
 
-        //     return event
-        // }
-        // createEvent: async (parent, {input}, context) => {
-        //     const user = checkAuth(context);
+        // //     const event = await newEvent.save();
 
-        //     const newEvent = new Event({
-        //         input, 
-        //         performer: user._id,
-        //         instrument: user.instrument,
-        //     });
-        //     const event = await newEvent.findOneAndUpdate();
+        // //     return event
+        // // }
+        // // createEvent: async (parent, {input}, context) => {
+        // //     const user = checkAuth(context);
 
-        //     return event
-        // }
+        // //     const newEvent = new Event({
+        // //         input, 
+        // //         performer: user._id,
+        // //         instrument: user.instrument,
+        // //     });
+        // //     const event = await newEvent.findOneAndUpdate();
+
+        // //     return event
+        // // }
         deleteEvent: async (parent, {eventId}, context) => {
             const user = checkAuth(context);
 

@@ -25,15 +25,11 @@ mutation Mutation ($firstName: String!, $lastName: String!, $performerName: Stri
 `
 
 export const CREATE_EVENT = gql `
-mutation Mutation($input: EventInput!) {
-    createEvent(input: $input) {
+mutation Mutation($location: String!, $description: String!, $website: String, $date: String) {
+  createEvent(location: $location, description: $description, website: $website, date: $date){
       _id
-      performer {
-        performerName
-      }
-      instrument {
-        instrument
-      }
+      performer
+      instrument
       location
       website
       description

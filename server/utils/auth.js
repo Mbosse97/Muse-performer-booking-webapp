@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const {SECRET_KEY} = require('../config/connection')
+// const {SECRET_KEY} = require('../uti')
 const {AuthenticationError} = require('apollo-server-express');
 
 
-const secret = 'mysecretssshhhhhhh';
+const secret = process.env.SECRET_KEY;
 const expiration = '2h';
 
 // module.exports = (context) => {
@@ -47,8 +47,8 @@ module.exports = {
     return req;
   },
 
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
+  signToken: function ({ email, _id, firstName, lastName, about, instrument, performerName }) {
+    const payload = { email, _id, firstName, lastName, about, instrument, performerName };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 

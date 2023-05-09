@@ -13,7 +13,7 @@ function EventCard({post: {_id, performer, location, website, description, date}
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
-                trigger={<Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />}
+                trigger={<Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} style={{ cursor: 'pointer' }}/>}
                 >
                 <Modal.Header>{description}</Modal.Header>
                 <Modal.Content image>

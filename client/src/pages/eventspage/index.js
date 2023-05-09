@@ -7,14 +7,13 @@ import EventCard from '../../components/Event'
 import { AuthProvider, AuthContext } from 'utils/auth';
 
 function EventPage() {
-    const {user} = useContext(AuthContext);
+
     const {loading, data} = useQuery(GET_EVENTS);
     const events = data?.events || [];
     
     
 
     console.log(events);
-    console.log({user})
   
     return (
       <div>
@@ -23,11 +22,6 @@ function EventPage() {
         <h1>Upcoming Events</h1>
       </Grid.Row>
       <Grid.Row>
-        {user && (
-          <Grid.Column>
-            <PostForm></PostForm>
-          </Grid.Column>
-        )}
         {loading ? (
           <h1>Loading Posts...</h1>
         ) : (events && events.map(event => (
@@ -35,7 +29,7 @@ function EventPage() {
             <EventCard post = {event}/>
           </Grid.Column>
         ))
-        )};
+        )}
       </Grid.Row>
       </Grid>
       </div>

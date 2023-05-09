@@ -19,18 +19,40 @@ export const GET_EVENTS = gql `
 query Query {
     events {
       _id
-      performer {
-        performerName _id 
-      }
-      instrument {
-        instrument
-      }
+      performer
+      instrument
       location
       website
       description
       dateCreated
       date
     }
+}
+`
+
+export const GET_ME = gql `
+query Query {
+  me {
+    _id
+    firstName
+    performerName
+    password
+    instrument
+    email
+    about
+    lastName
+    events {
+      _id
+      performer
+      instrument
+      location
+      website
+      description
+      dateCreated
+      date
+    }
+
+  }
 }
 `
 

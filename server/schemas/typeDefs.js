@@ -17,8 +17,8 @@ type User {
 
 type Event {
     _id: ID!
-    performer: [User]!
-    instrument: [User]!
+    performer: String!
+    instrument: String!
     location: String!
     website: String
     description: String!
@@ -59,17 +59,17 @@ input UpdateUserInput{
 
 input EventInput{
     location: String!
-    wesbite: String
+    website: String
     description: String!
     date: String
 }
 
 type Query {
+    me: User
     users: [User]
     events: [Event]
     getEvent(eventId: ID!): Event 
     getUser(userId: ID!): [User]
-
 }
 
 type Mutation {
@@ -82,7 +82,10 @@ type Mutation {
         about: String!): Auth
     login(email: String!, password: String!): Auth
     updateUser(input: UpdateUserInput): User
-    createEvent(input: EventInput!): Event!
+    createEvent(location: String!
+        website: String
+        description: String!
+        date: String): Event!
     deleteEvent(eventId: ID!): String!
 }
 `

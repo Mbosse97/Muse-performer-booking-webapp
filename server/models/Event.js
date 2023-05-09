@@ -2,16 +2,16 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const eventSchema = new Schema({
-    performer: [
+    performer:
         {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-        }
-    ],
-    instrument: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+        type: String,
+        required: true,
+        trim: true
+        },
+    instrument:{
+        type: String,
+        required: true,
+    },
     location: {
         type: String,
         required: true,
@@ -29,7 +29,7 @@ const eventSchema = new Schema({
         get: (timestamp) => dateFormat(timestamp),
     },
     date: {
-        type: Date, 
+        type: String, 
         min: Date.now
     },
     eventPhoto: {

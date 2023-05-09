@@ -62,7 +62,7 @@ function NavBar() {
       </Menu>
 
   ) : (
-      <Menu inverted secondary size='massive' color='teal' style={{backgroundColor: "#252930", paddingBottom:0}}>
+      <Menu inverted secondary size='massive' color='teal' style={{backgroundColor: "#252930", }}>
               <Container>
               <Menu.Item
                 name='home'
