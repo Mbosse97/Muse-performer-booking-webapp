@@ -23,12 +23,12 @@ function App() {
 
   return (
     <AuthProvider>
-        <Router>
+        <Router >
           <NavBar/>
           <Routes>
-          <Route path = "/" element={<HomePage />}/>
+           <Route path = "/" element={<HomePage />}/>
           </Routes>
-          <Container>
+          <Container style={{minHeight:'100vh'}}>
             <Routes>
               <Route path = "/profiles" element = {<ProfilePage />}/>
               <Route path = "/events" element = {<EventPage />}/>

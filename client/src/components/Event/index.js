@@ -33,7 +33,8 @@ function EventCard({post: {_id, performer, location, website, description, date}
                     color='grey'
                     content='Visit Website' 
                     icon ='world'
-                    onClick={() => setOpen(false)}/>
+                    onClick={()=> window.location.href = `www.${website}`}
+                    />
                   <Button
                     content="View Profile"
                     labelPosition='right'

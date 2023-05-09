@@ -6,6 +6,8 @@ import {Grid, Image, Segment} from "semantic-ui-react";
 import MyProfileCard from '../../components/MyProfileCard'
 import { padding } from "@mui/system";
 import { AuthContext } from "utils/auth";
+import ProfileCard from "components/Profiles";
+import AddEventButton from "components/AddEventButton";
 
 function SingleProfilePage() {
 
@@ -23,7 +25,7 @@ function SingleProfilePage() {
   
     return (
       <div>
-        <Grid>
+        <Grid columns={3}>
           <Grid.Column width={16}>
           <Grid.Row className="page-title">
               <h1>My Profile</h1>
@@ -70,14 +72,21 @@ function SingleProfilePage() {
             </Segment>
           </Grid.Column>
           <Grid.Row style={{paddingTop:'5em', paddingBottom:'5em'}}>
-            <h1>My Upcoming Events</h1>
+            <Grid.Column width={13}>
+              <h1>My Upcoming Events</h1>
+            </Grid.Column>
+             <AddEventButton style={{alignItems: 'right'}}/>
           </Grid.Row>
           <Grid.Row>
-              {userProfile && userProfile.events.map(event => (
-                <MyProfileCard post = {event}/> 
-              ))}
+            {loading ? (
+              <h1>Loading Events...</h1>
+            ) : (userProfile && userProfile.events.map(event => (
+              <Grid.Column key = {event.id} style ={{marginBottom: 20}}>
+                <MyProfileCard post = {event}/>
+              </Grid.Column>
+            ))
+            )}
           </Grid.Row>
-
         </Grid>
       </div>
     )

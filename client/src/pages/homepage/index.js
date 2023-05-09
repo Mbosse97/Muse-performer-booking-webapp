@@ -14,7 +14,7 @@ function HomePage() {
 
   return (
     
-    <Segment basic style={{paddingTop:0}}>
+    <Segment basic style={{paddingTop:0, width:'100% !important', height:'100vh'}}>
       <Segment text style={{backgroundColor: "#252930", textAlign:'center'}}>
         <Header
           as='h1'
@@ -56,7 +56,7 @@ function HomePage() {
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+            
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -72,23 +72,40 @@ function HomePage() {
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "What a Company"
+              "Testemonials"
             </Header>
             <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
           </Grid.Column>
           
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "I shouldn't have gone with their competitor."
+              "What a great App"
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='/images/avatar/large/nan.jpg' />
-              <b>Nan</b> Chief Fun Officer Acme Toys
+               - Me
             </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
+
+        <Segment style={{ padding: '8em 0em' }} vertical>
+        <Grid container stackable verticalAlign='middle'>
+        <Grid.Row>
+          <Grid.Column width={8}>
+            <Header as='h3' style={{ fontSize: '2em' }}>
+              About Us
+            </Header>
+            <p style={{ fontSize: '1.33em' }}>
+              We aim to create a platform for performers to be able to showcase their talents and promote thier events. 
+            </p>
+          </Grid.Column>
+          <Grid.Column floated='right' width={6}>
+            
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+        </Segment>
 
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
@@ -98,13 +115,14 @@ function HomePage() {
         <p style={{ fontSize: '1.33em' }}>
           Join our growing community of local performers and list your events for all to see
         </p>
-        <Button as='a' size='large' primary>
+        <Button as={Link} to='/register' size='large' primary>
           Register Now 
         </Button>
       </Container>
     </Segment>
     </Container>
-    
+
+
     </Segment>
     
   );
@@ -112,24 +130,3 @@ function HomePage() {
 
 
 export default HomePage;
-
-    // <div>
-    // <Grid columns={3} divided>
-    // <Grid.Row>
-    //   <h1>Recent Posts</h1>
-    //   <Grid.Column>
-    //     <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-    //   </Grid.Column>
-    // </Grid.Row>
-    // <Grid.Row>
-    //   {loading ? (
-    //     <h1>Loading Posts...</h1>
-    //   ) : (events && events.map(event => (
-    //     <Grid.Column key = {event.id} style ={{marginBottom: 20}}>
-    //       <EventCard post = {event}/>
-    //     </Grid.Column>
-    //   ))
-    //   )};
-    // </Grid.Row>
-    // </Grid>
-    // </div>

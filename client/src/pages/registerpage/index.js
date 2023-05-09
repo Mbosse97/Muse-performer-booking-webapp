@@ -4,7 +4,7 @@ import { ADD_USER } from "utils/mutations";
 import { useMutation } from "@apollo/client";
 import gql from "@apollo/client";
 import {AuthContext} from "utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegisterPage(props) {
     const [errors, setErrors] = useState({});
@@ -35,11 +35,15 @@ function RegisterPage(props) {
         setValues({...values, [name]: value});
     };
 
+    const navigate = useNavigate();
+
     const onSubmit = async (event) => {
         event.preventDefault();
         console.log(values);
 
-        addUser();
+        await addUser();
+
+        navigate('/');
     }
 
     return ( 
@@ -101,7 +105,7 @@ function RegisterPage(props) {
                 value={values.about}
                 onChange={onChange} 
             />
-            <Button type='submit' primary as ={Link} to ='/'>
+            <Button type='submit' primary>
                 Register
             </Button >
         </Form> 
