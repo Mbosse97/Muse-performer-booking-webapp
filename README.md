@@ -11,12 +11,6 @@ I WANT to display my upcoming events in one place where potential clients can fi
 SO THAT I can get exposure and grow in my career
 ```
 
-## Acceptance Criteria 
-
-```
-
-```
-
 ---
 ## Contents
 - [Description](#description)
@@ -74,7 +68,7 @@ Screenshots of Project My Profile Page
 ![Screemshot of project My profile Page](./images/my%20profile%20page%20screenshot.PNG)
 
 
-Project Demo Link: https://drive.google.com/file/d/13XY1HKjqyRHcooNAT_gTNkRhlXh-JMzz/view 
+Project Demo Link: https://intense-fortress-52687.herokuapp.com/  
 
 ---
 
