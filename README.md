@@ -27,6 +27,7 @@ this project can be accessed from the deoployment link or by downloading this so
 
 To dowloand the and run this webapp, take the follwing steps
 - Run npm i within the terminal to download all relevant packages
+- if // require('dotenv').config(); line on /server/serv.js is commented out, uncomment it before proceeding 
 - Run npm start to start both node server and client server
 
 ---
