@@ -8,7 +8,34 @@ function ProfileCard({post: {_id, firstName, lastName, instrument, email, about,
 
   return (
             <Card fluid>
-                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} style={{ cursor: 'pointer' }} />
+              <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+                trigger={<Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} style={{ cursor: 'pointer' }}/>}
+                >
+                <Modal.Header>{firstName} {lastName}</Modal.Header>
+                <Modal.Content image>
+                  <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
+                  <Modal.Description>
+                    <Header>{performerName}</Header>
+                    <p>
+                      About Me: {about}
+                    </p>
+                    <p> 
+                      Contact me: {email}
+                    </p>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    content="Back"
+                    onClick={() => setOpen(false)}
+                    secondary
+                  />
+                </Modal.Actions>
+                </Modal>
+  
               <Card.Content>
                 <Card.Header>{performerName}</Card.Header>
                 <Card.Meta>

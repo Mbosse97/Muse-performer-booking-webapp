@@ -41,7 +41,7 @@ function LoginPage(props) {
 
         await userLogin();
 
-        navigate('/');
+        navigate('/myprofile');
     }
 
     return ( 

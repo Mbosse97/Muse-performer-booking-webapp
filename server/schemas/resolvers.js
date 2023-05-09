@@ -9,11 +9,7 @@ const resolvers = {
     JSON: GraphQLJSON,
 
     Query: {
-        me: async (parent, args, context) => {
-            if(context.user) {
-                return await User.findOne({}).populate('events')
-            }
-        },
+
         users: async () => {
             return await User.find({}).populate({
                 path: 'events',
@@ -28,6 +24,12 @@ const resolvers = {
         },
         getUser: async (parent, {userId}, context) => {
             return await User.findOne({_id: userId}).populate('events');
+        },
+        me: async (parent, {args}, context) => {
+            console.log(context.user)
+            if(context.user) {
+                return User.findOne({_id: context.user._id}).populate('events')
+            }
         }
     },
 
@@ -73,7 +75,9 @@ const resolvers = {
               }
         
               const token = signToken(user);
-        
+              console.log(token);
+              console.log(user);
+              
               return { token, user };
         },
         updateUser: async (parent, { input }, context) => {

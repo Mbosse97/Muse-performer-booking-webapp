@@ -29,18 +29,10 @@ function EventCard({post: {_id, performer, location, website, description, date}
                   </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button 
-                    color='grey'
-                    content='Visit Website' 
-                    icon ='world'
-                    onClick={()=> window.location.href = `www.${website}`}
-                    />
                   <Button
-                    content="View Profile"
-                    labelPosition='right'
-                    icon='user'
+                    content="Back"
                     onClick={() => setOpen(false)}
-                    positive
+                    secondary
                   />
                 </Modal.Actions>
                 </Modal>
